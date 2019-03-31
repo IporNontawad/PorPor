@@ -1,45 +1,27 @@
-<button type="button" class="btn btn-primary">Primary</button><p></p>
+สวัสดี{{name}}
+<hr>
+<h3 class="text-center">Workshop 2</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>รหัสสินค้า</th>
+      <th>ชื่อสินค้า</th>
+      <th>ราคาสินค้า</th>
+      <th></th>
+    </tr>
 
-<div class="input-group">
-  <div class="input-group-prepend">
-    <button class="btn btn-success" type="button">Love it</button>
-  </div>
-  <input type="text" class="form-control" placeholder="ชื่อ" aria-label="small" aria-describedby="basic-addon1" [(ngModel)]="name">
-  สวัสดี{{name}}
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of productlist">
+      <td>{{p.pId}}</td>
+      <td>{{p.pName}}</td>
+      <td>{{p.pCost}}</td>
+        <td><button type="button" class="btn btn-primary" (click)="selectProduct(p)">เลือกสินค้า</button></td>
+    </tr>
+  </tbody>
+</table>
+<div class="row">
+<div class="col-6 bg-Info">test1</div>
+<div class="col-6 bg-Info">test2</div>
 </div>
-<table class="table">
-    <thead>
-      <tr>
-       
-        <th>Student ID</th>
-        <th>Weight</th>
-          <th>Height</th>
-          <th>BMI</th>
-          <th>Result</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>{{student.name}}</td>
-        <td>{{student.studentID}}</td>
-        <td>{{student.weight}}</td>
-        <td>{{student.height}}</td>
-        <td>{{student.weight/((student.height/100)*(student.height/100))}}</td>
-        <td *ngIf="student.weight/((student.height/100)*(student.height/100)) > 25">อ้วน</td>
-        <td *ngIf="student.weight/((student.height/100)*(student.height/100)) < 25">ผอม</td>
-        <td *ngIf="student.bmi/((student.height/100)*(student.height/100)) == 25">ปกติ</td>
-      </tr>
-      <tr *ngFor ="let i of studentlist">
-        <td>{{i.name}}</td>
-        <td>{{i.studentID}}</td>
-        <td>{{i.weight}}</td>
-        <td>{{i.height}}</td>
-        <td>{{i.weight/((i.height/100)*(i.height/100))}}</td>
-        <td *ngIf="i.bmi > 25">อ้วน</td>
-        <td *ngIf="i.bmi < 25">ผอม</td>
-        <td *ngIf="i.bmi == 25">ปกติ</td>
-      </tr>
-    </tbody>
-  </table>
-  
-
+<app-product-detail [selectedProduct]="selectedProduct"></app-product-detail>
